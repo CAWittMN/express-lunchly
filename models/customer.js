@@ -43,7 +43,8 @@ class Customer {
           phone,
           notes
         FROM customers
-        ORDER BY ${adjustedSort}`
+        ORDER BY $1`
+      [adjustedSort]
     );
     return results.rows.map((c) => new Customer(c));
   }
