@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS customers;
 CREATE TABLE customers (
     id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     first_name text NOT NULL,
+    middle_name text,
     last_name text NOT NULL,
     phone text,
     notes text DEFAULT '' NOT NULL
@@ -13,7 +14,7 @@ CREATE TABLE customers (
 
 CREATE TABLE reservations (
     id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    customer_id integer NOT NULL REFERENCES customers,
+    customer_id integer NOT NULL REFERENCES customers ON DELETE CASCADE,
     start_at timestamp without time zone NOT NULL,
     num_guests integer NOT NULL,
     notes text DEFAULT '' NOT NULL,
